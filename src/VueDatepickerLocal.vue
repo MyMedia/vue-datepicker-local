@@ -5,11 +5,11 @@
   <transition name="datepicker-anim">
     <div class="datepicker-popup" :class="[popupClass,{'datepicker-inline':type==='inline'}]" tabindex="-1" v-if="show||type==='inline'">
       <template v-if="range">
-        <vue-datepicker-local-calendar v-model="dates[0]" :left="true" :pre="pre" :weekend-days="weekendDays" :max-date="maxDate" :min-date="minDate"></vue-datepicker-local-calendar>
-        <vue-datepicker-local-calendar v-model="dates[1]" :right="true" :pre="pre" :weekend-days="weekendDays" :max-date="maxDate" :min-date="minDate"></vue-datepicker-local-calendar>
+        <vue-datepicker-local-calendar :allow-selecting-months="allowSelectingMonths" :allow-selecting-years="allowSelectingYears" v-model="dates[0]" :left="true" :pre="pre" :weekend-days="weekendDays" :max-date="maxDate" :min-date="minDate"></vue-datepicker-local-calendar>
+        <vue-datepicker-local-calendar :allow-selecting-months="allowSelectingMonths" :allow-selecting-years="allowSelectingYears" v-model="dates[1]" :right="true" :pre="pre" :weekend-days="weekendDays" :max-date="maxDate" :min-date="minDate"></vue-datepicker-local-calendar>
       </template>
       <template v-else>
-        <vue-datepicker-local-calendar v-model="dates[0]" :pre="pre" :weekend-days="weekendDays" :max-date="maxDate" :min-date="minDate"></vue-datepicker-local-calendar>
+        <vue-datepicker-local-calendar :allow-selecting-months="allowSelectingMonths" :allow-selecting-years="allowSelectingYears" v-model="dates[0]" :pre="pre" :weekend-days="weekendDays" :max-date="maxDate" :min-date="minDate"></vue-datepicker-local-calendar>
       </template>
     </div>
   </transition>
@@ -22,6 +22,8 @@ export default {
   name: 'VueDatepickerLocal',
   components: { VueDatepickerLocalCalendar },
   props: {
+    allowSelectingMonths: [Boolean],
+    allowSelectingYears: [Boolean],
     name: [String],
     inputClass: [String],
     popupClass: [String],

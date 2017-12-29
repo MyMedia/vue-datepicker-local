@@ -6,12 +6,12 @@
     <a :class="`${pre}-prev-month-btn`" v-show="!showYears&&!showMonths" @click="pm">‹</a>
     <a :class="`${pre}-year-select`" v-show="showYears">{{ys+'-'+ye}}</a>
     <template v-if="local.yearSuffix">
-      <a :class="`${pre}-year-select`" @click="showYears=!showYears" v-show="!showYears">{{year}}{{local.yearSuffix}}</a>
-      <a :class="`${pre}-month-select`" @click="showMonths=!showMonths" v-show="!showYears&&!showMonths">{{local.monthsHead[month]}}</a>
+      <a :class="`${pre}-year-select`" @click="allowSelectingYears && (showYears=!showYears)" v-show="!showYears">{{year}}{{local.yearSuffix}}</a>
+      <a :class="`${pre}-month-select`" @click="allowSelectingMonths && (showMonths=!showMonths)" v-show="!showYears&&!showMonths">{{local.monthsHead[month]}}</a>
     </template>
     <template v-else>
-      <a :class="`${pre}-month-select`" @click="showMonths=!showMonths" v-show="!showYears&&!showMonths">{{local.monthsHead[month]}}</a>
-      <a :class="`${pre}-year-select`" @click="showYears=!showYears" v-show="!showYears">{{year}}</a>
+      <a :class="`${pre}-month-select`" @click="allowSelectingMonths && (showMonths=!showMonths)" v-show="!showYears&&!showMonths">{{local.monthsHead[month]}}</a>
+      <a :class="`${pre}-year-select`" @click="allowSelectingYears && (showYears=!showYears)" v-show="!showYears">{{year}}</a>
     </template>
     <a :class="`${pre}-next-month-btn`" v-show="!showYears&&!showMonths" @click="nm">›</a>
     <a :class="`${pre}-next-year-btn`" v-show="!showYears" @click="year++">»</a>
@@ -57,6 +57,8 @@
 export default {
   name: 'VueDatepickerLocalCalendar',
   props: {
+    allowSelectingMonths: true,
+    allowSelectingYears: true,
     value: null,
     left: false,
     right: false,
